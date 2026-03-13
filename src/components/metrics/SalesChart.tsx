@@ -21,12 +21,12 @@ export default function SalesChart({ data }: { data: any[] }) {
             <stop offset="95%" stopColor="#f97316" stopOpacity={0}/>
           </linearGradient>
         </defs>
-        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="currentColor" strokeOpacity={0.06} />
         <XAxis 
           dataKey="name" 
           axisLine={false} 
           tickLine={false} 
-          tick={{ fill: '#94a3b8', fontSize: 12 }}
+          tick={{ fill: 'currentColor', opacity: 0.5, fontSize: 12 }}
           dy={10}
         />
         <YAxis 
@@ -37,8 +37,11 @@ export default function SalesChart({ data }: { data: any[] }) {
             borderRadius: '16px', 
             border: 'none', 
             boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            backgroundColor: 'currentColor',
+            color: 'var(--color-slate-50)'
           }}
+          itemStyle={{ color: 'var(--color-orange-500)' }}
           formatter={(value: any) => [`$${formatCurrency(value)}`, 'Ventas']}
         />
         <Area 

@@ -13,12 +13,6 @@ export default async function OrdersPage() {
     .eq('id', user?.id)
     .single()
 
-  const { data: initialOrders } = await supabase
-    .from('orders')
-    .select('*')
-    .eq('restaurant_id', profile?.restaurant_id)
-    .order('created_at', { ascending: true })
-
   return (
     <div className="min-h-dvh bg-slate-50 flex flex-col">
       <header className="bg-white border-b border-slate-100 px-6 py-4 sticky top-0 z-20 flex justify-between items-center w-full min-h-[76px]">
@@ -33,10 +27,9 @@ export default async function OrdersPage() {
       </header>
 
       <main className="flex-1 p-4 md:p-6 overflow-hidden">
-        <OrderKanban 
-          initialOrders={initialOrders || []} 
-          restaurantId={profile?.restaurant_id} 
-        />
+        {profile?.restaurant_id && (
+          <OrderKanban restaurantId={profile.restaurant_id} />
+        )}
       </main>
     </div>
   )
